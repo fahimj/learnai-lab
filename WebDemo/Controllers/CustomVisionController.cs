@@ -13,12 +13,12 @@ using ApiLibrary;
 
 namespace WebDemo.Controllers
 {
-    public class CVDemoController : Controller
+    public class CustomVisionController : Controller
     {
         private readonly IHostingEnvironment _environment;
 
         // Constructor
-        public CVDemoController(IHostingEnvironment IHostingEnvironment)
+        public CustomVisionController(IHostingEnvironment IHostingEnvironment)
         {
             _environment = IHostingEnvironment;
         }
@@ -26,7 +26,7 @@ namespace WebDemo.Controllers
         // GET: /<controller>/
         public async Task<IActionResult> Index()
         {
-            var response = await VisionService.AnalyzeImage("wwwroot/demoImages/testImage.jpg");
+            var response = await CustomVisionService.AnalyzeImage("wwwroot/demoImages/testImage.jpg");
             return View(response);
         }
 
@@ -47,7 +47,7 @@ namespace WebDemo.Controllers
                     var fileName = ContentDispositionHeaderValue.Parse(formFile.ContentDisposition).FileName.Trim('"');
 
                     //Assigning Unique Filename (Guid)
-                    var myUniqueFileName = "testImage" ; //Convert.ToString(Guid.NewGuid());
+                    var myUniqueFileName = "testImage"; //Convert.ToString(Guid.NewGuid());
 
                     //Getting file Extension
                     var FileExtension = Path.GetExtension(fileName);

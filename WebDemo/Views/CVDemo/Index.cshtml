@@ -1,0 +1,38 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
+*@
+@{
+
+}
+@model ApiLibrary.AnalyzeImageResponse
+
+<h1>Computer Vision API</h1>
+
+<form method="post" enctype="multipart/form-data" asp-controller="CVDemo" asp-action="UploadImage">
+    <div class="form-group">
+        <div class="col-md-10">
+            <p>Upload one or more files using this form:</p>
+            <input type="file" name="files" multiple />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-10">
+            <input type="submit" value="Upload" />
+        </div>
+    </div>
+</form>
+
+<div>
+    <div>
+        <img src="~/demoImages/testImage.jpg" />
+    </div>
+    <div style="padding-left: 600px;
+    margin-top: -380px;">
+        <h2>Image Information</h2>
+        <h3>Caption : </h3> <p style="color:green"> @Model.Description.Captions[0].Text </p>
+        @*<h3>Categories Name :  </h3><p style="color:green"> @Model.categories[0].name  </p>*@
+        <h3>Possible Tags :  </h3><p style="color:green"> @String.Join(", ", Model.Description.Tags.ToArray())</p>
+        <h3>Format :  </h3><p style="color:green"> @Model.Metadata.Format</p>
+    </div>
+</div>
